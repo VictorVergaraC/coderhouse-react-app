@@ -1,36 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import styles from './app.module.css'
+import stylesMain from './main.module.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+
+  const name = 'Victor'
+  const edad = 12
+
+  const person = {
+    name : 'Cata',
+    age  : 24
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)} style={{ margin : '1px' }}>
-          count is {count}
-        </button>
-        <button onClick={() => setCount(0)} style={{ margin : '1px' }}>reset</button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className='container'>
+      <h1>Nombre: { name }</h1>
+      <h2 className={styles.textBlue}>Estilos con css module</h2>
+      <h2 className={stylesMain.textBlue}>Estilos con css module</h2>
+      <h2 className={`${styles.textGreen} ${styles.fontSize}`}>Estilos con dos clases css module</h2>
+      <h2 className='mt-5 text-primary border border-5 p-3 w-50'>Estilos con bootstrap</h2>
+
+      {
+        edad >= 18
+        ? (<p>Eres mayor de edad</p>)
+        : (<p>Eres menor de edad</p>)
+      }
+
+      {
+        name === "Victor"
+        ? <h3>Holaa { name }</h3>
+        : <h3>Quién eri oee</h3>
+      }
+
+      <p>Nombre: { person.name }</p>
+      <p>Name: { person.age } { person.age >= 18 && (<strong>(Mayor de edad)</strong>) }</p>
+
+    </div>
+  );
 }
 
-export default App
+export default App;
+
