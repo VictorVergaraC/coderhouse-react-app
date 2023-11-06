@@ -1,7 +1,9 @@
-import Card from './components/Card/card';
-import HookUseState from './components/HookUseState/HookUseState';
-import Layout from './components/Layout/Layout';
-import Padre from './components/Padre';
+// import Card from './components/Card/card';
+// import HookUseState from './components/HookUseState/HookUseState';
+// import Layout from './components/Layout/Layout';
+import MyMap from './components/Map/MyMap';
+// import Padre from './components/Padre';
+// import MyPromise from './components/Promises/MyPromise';
 
 const App = () => {
 
@@ -10,10 +12,12 @@ const App = () => {
       <h1>Componente App</h1>
       {/* <Padre/> */}
       {/* <HookUseState/> */}
-      <Layout>
+      {/* <Layout>
         <h4>Chlidren</h4>
         <Card/>
-      </Layout>
+      </Layout> */}
+      {/* <MyPromise/> */}
+      <MyMap/>
     </>
   );
 }
