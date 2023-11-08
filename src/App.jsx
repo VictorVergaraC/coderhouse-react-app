@@ -1,9 +1,11 @@
 // import Card from './components/Card/card';
 // import HookUseState from './components/HookUseState/HookUseState';
 // import Layout from './components/Layout/Layout';
-import MyMap from './components/Map/MyMap';
+// import MyMap from './components/Map/MyMap';
 // import Padre from './components/Padre';
 // import MyPromise from './components/Promises/MyPromise';
+
+import CharacterContainer from "./components/Characters/CharacterContainer";
 
 const App = () => {
 
@@ -17,7 +19,8 @@ const App = () => {
         <Card/>
       </Layout> */}
       {/* <MyPromise/> */}
-      <MyMap/>
+      {/* <MyMap/> */}
+      <CharacterContainer/>
     </>
   );
 }
