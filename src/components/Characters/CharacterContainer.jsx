@@ -14,7 +14,7 @@ const CharacterContainer = () => {
             const resp = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
             const data = await resp.json()
 
-            // console.log(data)
+            console.log(data.results)
             setCharacters(data.results)
             setIsLoading(false)
 
