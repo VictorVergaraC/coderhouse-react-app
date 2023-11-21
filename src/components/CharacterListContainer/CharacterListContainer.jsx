@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react"
-import CharacterList from "./CharacterList";
-import Button from "../Buttons/Button";
+import { useEffect, useState } from 'react';
+import CharacterList from '../CharacterList/CharacterList';
+import Button from '../Buttons/Button';
 
-const CharacterContainer = () => {
-
+const CharacterListContainer = () => {
     const [characters, setCharacters] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [page, setPage] = useState(1);
@@ -14,12 +13,11 @@ const CharacterContainer = () => {
             const resp = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
             const data = await resp.json()
 
-            console.log(data.results)
             setCharacters(data.results)
             setIsLoading(false)
 
-        } catch( error) {
-            console.log(error)
+        } catch (err) {
+            console.log(err)
         }
     }
 
@@ -42,6 +40,11 @@ const CharacterContainer = () => {
     useEffect(() => {
         getCharacters()
 
+        return () => {
+            setCharacters([])
+            setIsLoading(true)
+        }
+
     }, [page]);
 
     return (
@@ -55,9 +58,9 @@ const CharacterContainer = () => {
                     <>
                     <CharacterList characters={characters}/>
                     <div className="d-flex justify-content-center align-items-center">
-                        { page > 1 && <Button name={'Atrás'} action={handlePrevPage} class={'btn btn-primary btn-sm m-2'}/> }
+                        <Button disabled={page <= 1} name={'Atrás'} action={handlePrevPage} class={'btn btn-primary btn-sm m-2'}/> 
                         <strong>Página: {page}</strong>
-                        { page < 42 && <Button name={'Sig.'} action={handleNextPage} class={'btn btn-success btn-sm m-2'}/> }
+                        <Button disabled={page >= 42} name={'Sig.'} action={handleNextPage} class={'btn btn-success btn-sm m-2'}/>
                     </div>
                     </>
                 )
@@ -66,4 +69,4 @@ const CharacterContainer = () => {
     );
 }
 
-export default CharacterContainer;
+export default CharacterListContainer;

@@ -4,14 +4,15 @@
 // import MyMap from './components/Map/MyMap';
 // import Padre from './components/Padre';
 // import MyPromise from './components/Promises/MyPromise';
+import Count from "./components/Count/Count";
 
-import CharacterContainer from "./components/Characters/CharacterContainer";
+import CharacterListContainer from "./components/CharacterListContainer/CharacterListContainer";
 
 const App = () => {
 
   return (
-    <>
-      <h1>Componente App</h1>
+    <div className="container">
+      <h1 className="m-5">Componente App</h1>
       {/* <Padre/> */}
       {/* <HookUseState/> */}
       {/* <Layout>
@@ -20,8 +21,13 @@ const App = () => {
       </Layout> */}
       {/* <MyPromise/> */}
       {/* <MyMap/> */}
-      <CharacterContainer/>
-    </>
+
+      <Count />
+
+
+      {/* <CharacterListContainer/> */}
+      {/* <CharacterDetailContainer/> */}
+    </div>
   );
 }
 
