@@ -1,70 +1,26 @@
-import { useEffect, useState } from 'react';
 import CharacterList from '../CharacterList/CharacterList';
 import Button from '../Buttons/Button';
+import { useParams } from 'react-router';
+import { useFetch } from '../../hooks/useFetch';
+import { useCount } from '../../hooks/useCount';
 
 const CharacterListContainer = () => {
-    const [characters, setCharacters] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [page, setPage] = useState(1);
 
-    const getCharacters = async () => {
-        try {
+    const { status } = useParams()
 
-            const resp = await fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
-            const data = await resp.json()
+    const { count, increment, decrement } = useCount(1)
 
-            setCharacters(data.results)
-            setIsLoading(false)
-
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    const handleNextPage = () => {
-        setPage(
-            page < 42
-            ? page + 1
-            : page
-        )
-    }
-
-    const handlePrevPage = () => {
-        setPage(
-            page > 1
-            ? page - 1
-            : page
-        )
-    }
-
-    useEffect(() => {
-        getCharacters()
-
-        return () => {
-            setCharacters([])
-            setIsLoading(true)
-        }
-
-    }, [page]);
+    const { data, isLoading } = useFetch(`https://rickandmortyapi.com/api/character/?page=${count}${status ? '&status=' + status : ''}`)
 
     return (
-        <div className="m-2">
-            {
-                isLoading
-                ? (
-                    <h6>Cargando personajes ...</h6>
-                )
-                : (
-                    <>
-                    <CharacterList characters={characters}/>
-                    <div className="d-flex justify-content-center align-items-center">
-                        <Button disabled={page <= 1} name={'Atrás'} action={handlePrevPage} class={'btn btn-primary btn-sm m-2'}/> 
-                        <strong>Página: {page}</strong>
-                        <Button disabled={page >= 42} name={'Sig.'} action={handleNextPage} class={'btn btn-success btn-sm m-2'}/>
-                    </div>
-                    </>
-                )
-            }
+        
+        <div className='container d-flex flex-column align-items-center'>
+            {isLoading ? <h2>Cargando ...</h2> : <CharacterList characters={data.results} />}
+            <div className="mt-2 d-flex justify-content-center align-items-center">
+                <Button disabled={count <= 1} name={'Atrás'} action={increment} class={'btn btn-primary btn-sm m-2'} />
+                <strong>Página: {count}</strong>
+                <Button disabled={count >= 42} name={'Sig.'} action={decrement} class={'btn btn-success btn-sm m-2'} />
+            </div>
         </div>
     );
 }
