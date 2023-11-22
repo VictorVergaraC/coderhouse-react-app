@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const ProductItem = ({ id, name, precio }) => {
     return (
-        <article className="d-flex flex-column border border-3 rounded-3 p-3 m-2">
+        <article className="d-flex flex-column border border-3 rounded-3 p-3 m-2 col-3">
             <h6>{name}</h6>
             <p>${precio}</p>
             <Link to={`/product/${id}`}>
