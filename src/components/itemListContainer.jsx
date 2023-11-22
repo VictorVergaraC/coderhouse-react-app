@@ -35,7 +35,7 @@ const ItemListContainer = () => {
     return (
         <section className="d-flex flex-column gap-2">
             <h6>Item List Container</h6>
-            <aside className="d-flex gap-1">
+            <aside className="d-flex flex-sm-wrap gap-1">
                 {
                     isLoading
                         ? <h4>{loadingMessage}</h4>

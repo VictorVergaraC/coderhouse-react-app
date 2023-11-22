@@ -12,7 +12,7 @@ export const getProducts = () => {
         if (products.length > 0) {
             setTimeout(() => {
                 resolve( products )
-            }, 3000);
+            }, 2000);
         } else {
             reject("No se encontraron productos!")
         }

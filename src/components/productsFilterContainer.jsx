@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { filterCategoryProduct } from "../assets/js/products";
+import ProductItem from "./productItem";
 
 const ProductsFilterContainer = () => {
 
@@ -12,7 +13,12 @@ const ProductsFilterContainer = () => {
     const getData = () => {
         const response = filterCategoryProduct(category)
         response.then(result => {
-            console.log(result)
+            setProducts(result)
+            setIsLoading(false)
+        })
+        .catch(err => {
+            console.log(err)
+            setIsLoading(true)
         })
     }
 
@@ -20,15 +26,20 @@ const ProductsFilterContainer = () => {
         getData()
 
         return () => {
-
+            setProducts([])
+            setIsLoading(true)
         }
-    }, [])
+    }, [category])
 
 
     return (
-        <div>
-
-        </div>
+        <section className="d-flex flex-sm-wrap gap-1">
+            {
+                isLoading
+                    ? <h4>Cargando productos . . .</h4>
+                    : products.map(product => <ProductItem key={product.id} {...product} />)
+            }
+        </section>
     );
 }
 
