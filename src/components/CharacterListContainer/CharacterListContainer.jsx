@@ -13,14 +13,23 @@ const CharacterListContainer = () => {
     const { data, isLoading } = useFetch(`https://rickandmortyapi.com/api/character/?page=${count}${status ? '&status=' + status : ''}`)
 
     return (
-        
+
         <div className='container d-flex flex-column align-items-center'>
-            {isLoading ? <h2>Cargando ...</h2> : <CharacterList characters={data.results} />}
-            <div className="mt-2 d-flex justify-content-center align-items-center">
-                <Button disabled={count <= 1} name={'Atrás'} action={increment} class={'btn btn-primary btn-sm m-2'} />
-                <strong>Página: {count}</strong>
-                <Button disabled={count >= 42} name={'Sig.'} action={decrement} class={'btn btn-success btn-sm m-2'} />
-            </div>
+            {
+                isLoading
+                    ? <h2>Cargando ...</h2>
+                    : (
+                        <>
+                            <CharacterList characters={data.results} />
+                            <div className="mt-2 d-flex justify-content-center align-items-center">
+                                <Button disabled={count <= 1} name={'Atrás'} action={decrement} class={'btn btn-primary btn-sm m-2'} />
+                                <strong>Página: {count}</strong>
+                                <Button disabled={count <= data.pages} name={'Sig.'} action={increment} class={'btn btn-success btn-sm m-2'} />
+                            </div>
+                        </>
+                    )
+            }
+
         </div>
     );
 }

@@ -6,14 +6,14 @@ export const useCount = (initial = 0) => {
 
     const increment = () => setCount(count + 1)
 
-    const drecrement = () => setCount(count > initial ? count - 1 : count) 
+    const decrement = () => setCount(count > initial ? count - 1 : count) 
 
     const reset = () => setCount(initial)
 
     return {
         count,
         increment,
-        drecrement,
+        decrement,
         reset
     }
 }
