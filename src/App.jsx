@@ -10,6 +10,7 @@ const App = () => {
       <main className="m-5 p-2">
         <Routes>
           <Route path="/" element={<ItemListContainer />}/>
+          <Route path="/product/:idProduct" />
           <Route path="/category/:ropa" />
           <Route path="/category/:calzado" />
           <Route path="/category/:accesorios" />
