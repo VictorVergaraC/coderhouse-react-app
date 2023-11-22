@@ -1,16 +1,14 @@
-import React from 'react';
+import { useState } from "react";
 
-const ItemListContainer = ({props}) => {
+const ItemListContainer = () => {
 
-    console.log(props)
+    const [products, setProducts] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     return (
-        <div className='my-2 mx-5'>
-            <h3>Item List Container</h3>
-            <div className='my-2'>
-                <h5>Mensaje: { props.message }</h5>
-            </div>
-        </div>
+        <section>
+            <h6>ItemListContainer</h6>
+        </section>
     );
 }
 

@@ -1,14 +1,13 @@
-import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 const CartWidget = () => {
     return (
-        <div className="d-flex">
-            <FontAwesomeIcon icon={faShoppingCart} size="lg" />
-            <div className='bg-danger rounded'>
-                <span className="badge">5</span>
-            </div>
+        <div className="d-flex p-1">
+            <button title='Ir al Carrito' className='btn btn-outline-danger d-flex gap-2 align-items-center'>
+                <FontAwesomeIcon icon={faShoppingCart} />
+                <span>5</span>
+            </button>
         </div>
     );
 }
